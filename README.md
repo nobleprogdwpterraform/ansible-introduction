@@ -71,5 +71,3 @@ To erase all VMs, do
 vagrant destroy -f
 ```
 
-Next: [Install Ansible](./03-install-ansible.md)<br/>
-Prev: [Prerequisites](./01-prerequisites.md)

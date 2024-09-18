@@ -1,0 +1,70 @@
+#Command Module
+-
+  name: Play1
+  hosts: localhost
+  become: true
+  tasks:
+    - command: date
+      name: Execute date command
+
+    - command: cat /etc/resolv.conf
+      name: Display content
+
+    - command: cat resolv.conf chdir=/etc
+      name: Display content
+
+    - command: mkdir folder creates=/folder
+      name: Create folder
+
+#Service Module
+---
+-  name: 'Start service'
+   hosts: localhost
+   become: yes
+   tasks:
+     -  name: Start db service
+        service: 'name=postgresql state=started'
+
+     -  name: Start the httpd service
+        service: name=httpd state=started
+      
+     - name: Start nginx service
+       service:
+        name: nginx
+        state: started
+
+#lineinfile service
+-
+  name: Add DNS to reslov.conf
+  hosts: localhost
+  vars:
+    dns_server: 10.1.250.10
+  tasks:
+    - lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver {{ dns_server }}'
+
+
+
+#Lab:
+---
+- name: 'hosts'
+  hosts: all
+  become: yes
+  tasks:
+    - name: 'Execute a script'
+      script: '/tmp/install_script.sh'
+    - name: 'Start httpd service'
+      service:
+        name: 'httpd'
+        state: 'started'
+    - name: "Update /var/www/html/index.html"
+      lineinfile:
+        path: /var/www/html/index.html
+        line: "Welcome to ansible-beginning course"
+        create: true
+    - name: 'Create a new user'
+      user:
+        name: 'web_user'
+        uid: 1040
+        group: 'developers'

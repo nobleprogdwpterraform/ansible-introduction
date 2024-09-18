@@ -1,0 +1,16 @@
+---
+- name: Deploy Applications
+  hosts: applications_servers
+  become: yes
+  tasks:
+    - name: Copy Application Code
+      copy:
+        src: app_code/
+        dest: /opt/application
+      notify: Restart Application Service
+
+  handlers:
+    - name: Restart Application Service
+      service:
+        name: application_service
+        state: restarted

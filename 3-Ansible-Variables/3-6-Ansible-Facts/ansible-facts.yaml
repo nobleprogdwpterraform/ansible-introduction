@@ -1,0 +1,24 @@
+# Show Fact gathered at start of play
+---
+- name: Print Hello message
+  host: all
+  tasks:
+    - debug:
+        msg: Hello from Ansible
+
+# Show facts
+---
+- name: Print Facts
+  host: all
+  tasks:
+    - debug:
+        var: ansible_facts
+
+# Gather no facts
+---
+- name: Print Facts
+  host: all
+  gather_facts: no
+  tasks:
+    - debug:
+        var: ansible_facts

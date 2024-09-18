@@ -1,0 +1,6 @@
+---
+- name: Play
+  host: all
+  tasks:
+    - debug:
+        msg: '{{ host_vars['web2'].dns_server }}'

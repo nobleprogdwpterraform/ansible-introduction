@@ -1,0 +1,75 @@
+-
+  name: Install Nginx
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Nginx on Debian
+      apt:
+        name: nginx
+        state: present
+      when: ansible_os_family == 'Debian'
+    
+    - name: Install Nginx on Redhat
+      yum:
+        name: nginx
+        state: present
+      when: ansible_os_family == 'Redhat'
+
+
+# Conditinoal & Register
+-
+  name: Check service status and Email if Down
+  hosts: localhost
+  become: true
+  tasks:
+    - command: service httpd status
+      register: result
+    
+    - mail:
+        to: admin@organization.com
+        subject: Service Down
+        body: Httpd service is Down
+        when: result.stdout.find('down') != -1
+    
+    - debug:
+        msg: Httd Service is Down
+        when: result.stdout.find('down') != -1
+    
+    - debug:
+        msg: Httd Service is Up
+        when: result.stdout.find('down') == -1
+
+  
+  # Lab: Start service on target1 only
+---
+-  name: 'Start service'
+   hosts: all
+   become: yes
+   tasks:
+     -  service: 'name=nginx state=started'
+        when: 'ansible_host == "target1"'
+
+# Lab: Print age with condition
+---
+- name: 'Am I an Adult or a Child?'
+  hosts: localhost
+  vars:
+    age: 25
+  tasks:
+    - name: I am a Child
+      command: 'echo "I am a Child"'
+      when: 'age < 18'
+    - name: I am an Adult
+      command: 'echo "I am an Adult"'
+      when: 'age >= 18'
+
+# Lab: Playbook /home/bob/playbooks/nameserver.yaml attempts to add an entry in /etc/resolv.conf file to add a new nameserver.
+---
+- name: 'Add name server entry if not already entered'
+  hosts: localhost
+  become: yes
+  tasks:
+    - shell: 'cat /etc/resolv.conf'
+      register: command_output
+    - shell: 'echo "nameserver 10.0.250.10" >> /etc/resolv.conf'
+      when: 'command_output.stdout.find("10.0.250.10") == -1'

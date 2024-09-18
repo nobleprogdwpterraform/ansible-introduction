@@ -1,0 +1,16 @@
+tasks:
+  - name: Install Prerequisite
+    debug:
+      msg: 'Installing prereqs'
+  
+  - name: Install packages
+    debug:
+      msg: 'Installing packages'
+
+  - name: Start MySql DB
+    debug:
+      msg: 'Starting MySQL DB'
+
+  - name: Configure DB
+    debug:
+      msg: 'Configured test DB'

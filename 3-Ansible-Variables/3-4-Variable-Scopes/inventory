@@ -1,0 +1,4 @@
+# Web Servers
+web1 ansible_host=server1.company.com 
+web2 ansible_host=server2.company.com  dns_server=10.5.5.4
+web3 ansible_host=server3.company.com 

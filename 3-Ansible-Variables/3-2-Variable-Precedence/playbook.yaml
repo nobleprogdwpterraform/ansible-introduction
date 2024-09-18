@@ -1,0 +1,12 @@
+-
+  name: Add DNS to reslov.conf
+  hosts: localhost
+  vars:
+    dns_server: 10.1.250.10
+  tasks:
+    - lineinfile:
+        path: /etc/resolv.conf
+        line: 'nameserver {{ dns_server }}'
+
+
+#ansible-playbook playbook.yaml --extra-vars dns_server=10.5.5.7

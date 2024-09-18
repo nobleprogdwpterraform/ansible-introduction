@@ -1,0 +1,24 @@
+# Use custom user defined role
+# ansible-galaxy init myrole
+---
+- name: Deploy Applications
+  hosts: applications_servers
+  roles:
+    - myrole
+
+
+# Default location for all roles
+/etc/ansible/roles (defined in /etc/anisble/ansible.cfg with roles_path=/etc/ansible/roles property)
+
+# Find roles in ansible global galaxy
+ansible-galaxy search mysql
+
+# Install a globally shared role on your local at default roles path
+ansible-galaxy install geerlingguy.mysql
+
+# Install a globally shared role on your local under current local directory
+ansible-galaxy install geerlingguy.mysql -p ./roles
+
+#list roles
+ansible-galaxy list
+ansible-config dump | grep ROLE

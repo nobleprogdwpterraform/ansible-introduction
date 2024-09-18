@@ -1,0 +1,36 @@
+---
+- name: 'Add nameserver in resolv.conf file on localhost'
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: 'Add nameserver in resolv.conf file'
+      lineinfile:
+        path: /tmp/resolv.conf
+        line: 'nameserver {{ dns_server }}'
+
+
+
+
+#Lab Excerise:
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Set up user
+      user:
+        name: "{{ user_details.username }}"
+        password: "{{ user_details.password }}"
+        comment: "{{ user_details.email }}"
+        state: present
+
+#Inventory for above playbook:
+localhost ansible_connection=local nameserver_ip=8.8.8.8 snmp_port=160-161
+target1 ansible_host=target1 ansible_ssh_pass=vagrant
+
+[web_nodes]
+localhost
+target1
+
+[all:vars]
+app_list=['vim', 'sqlite', 'jq']
+user_details={'username': 'admin', 'password': 'secret_pass', 'email': 'admin@example.com'}
