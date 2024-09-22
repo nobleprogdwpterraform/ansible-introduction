@@ -8,25 +8,20 @@ Do all the following from your favourite terminal application
     git clone https://github.com/nobleprogdwpterraform/ansible-introduction.git
     ```
 
+1. Install Oracle Virtual box (optional if you created/cloned your DaDesktop from trainer desktop)
+https://www.virtualbox.org/wiki/Downloads
+
+1. Install vagrant (optional if you crearted/cloned your DaDesktop from trainer desktop)
+https://developer.hashicorp.com/vagrant/install
+
+1. Install Visual Studio Code IDE (optional if you created/cloned your DaDesktop from trainer desktop)
+https://code.visualstudio.com/download
+
 1. Start the virtual machines.
 
     ```bash
+    cd vagrant
     vagrant up
-    ```
-
-    Soon after the process starts, it will display a box like this. If you need to raise questions on our forums about the VM installation, you *must* copy this output from your system and include it with your message so we can help you better.
-
-    ```text
-    ┌─────────────────────────── EXAMPLE ─────────────────────────────────┐
-    │ If raising a question on our forums, please include the contents    │
-    │ of this box with your question. It will help us to identify issues  │
-    │ with your system.                                                   │
-    │                                                                     │
-    │ Detecting your hardware...                                          │
-    │ - System: Microsoft Windows 10 Enterprise                           │
-    │ - CPU:    Intel(R) Core(TM) i7-7800X CPU @ 3.50GHz (12 cores)       │
-    │ - RAM:    32 GB                                                     │
-    └─────────────────────────────────────────────────────────────────────┘
     ```
 
     When the process completes successfully, it will display the names of the VMs and their IP addresses on the virtual network
