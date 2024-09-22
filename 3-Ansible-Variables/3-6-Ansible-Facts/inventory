@@ -1,4 +1,9 @@
-# Web Servers
-web1 ansible_host=server1.company.com 
-web2 ansible_host=server2.company.com  dns_server=10.5.5.4
-web3 ansible_host=server3.company.com 
+
+localhost ansible_connection=local nameserver_ip=8.8.8.8 snmp_port=160-161
+target1 ansible_host=target1 ansible_user=vagrant ansible_ssh_pass=vagrant
+target2 ansible_host=target2 ansible_user=vagrant ansible_ssh_pass=vagrant
+
+[web_nodes]
+localhost
+target1
+target2

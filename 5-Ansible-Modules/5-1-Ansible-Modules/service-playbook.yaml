@@ -1,0 +1,18 @@
+
+
+#Service Module
+---
+-  name: 'Start service'
+   hosts: localhost
+   become: yes
+   tasks:
+     -  name: Start nginx service
+        service: 'name=nginx state=started'
+      
+     - name: Start nginx service
+       service:
+        name: nginx
+        state: started
+
+#Modules and Plugin Index
+#https://docs.ansible.com/ansible/latest/collections/all_plugins.html

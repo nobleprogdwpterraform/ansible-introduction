@@ -1,0 +1,11 @@
+-
+  name: Play1
+  hosts: target1
+  tasks:
+    - yum:
+        name: nginx
+        state: present
+      name: Install nginx
+      become: yes
+
+# ap check-playbook.yaml --check

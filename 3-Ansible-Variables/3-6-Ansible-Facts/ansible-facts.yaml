@@ -1,7 +1,7 @@
 # Show Fact gathered at start of play
 ---
 - name: Print Hello message
-  host: all
+  hosts: all
   tasks:
     - debug:
         msg: Hello from Ansible
@@ -9,7 +9,7 @@
 # Show facts
 ---
 - name: Print Facts
-  host: all
+  hosts: all
   tasks:
     - debug:
         var: ansible_facts
@@ -17,7 +17,7 @@
 # Gather no facts
 ---
 - name: Print Facts
-  host: all
+  hosts: all
   gather_facts: no
   tasks:
     - debug:

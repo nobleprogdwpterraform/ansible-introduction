@@ -1,0 +1,34 @@
+# mkdir app_code
+# echo This is {{ inventory_hostname }} web-server >> app_code/index.html.j2
+
+---
+-
+  name: Jinja2 template 
+  hosts: all
+  become: yes
+  tasks:    
+    - name: install apache2 on Debian
+      apt:
+        name: apache2
+        state: latest
+      when: ansible_os_family == 'Debian'
+    - name: start apache2 on Debian
+      service:
+        name: apache2
+        state: started
+      when: ansible_os_family == 'Debian'
+      
+    - name: install httpd on RedHat
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_os_family == 'RedHat'
+    - name: start httpd on RedHat
+      service:
+        name: httpd
+        state: started
+      when: ansible_os_family == 'RedHat'
+    - name: Copy Application Code
+      template:
+        src: app_code/index.html.j2
+        dest: /var/www/html/index.html

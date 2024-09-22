@@ -4,32 +4,21 @@
   hosts: all
   become: true
   tasks:
-    - ping
+    - ping:
 # or use below adhoc command to test the connectivity
-ansible -m ping all
+#ansible -m ping all
 # to run a command instead of ping
-ansible -a 'cat /etc/hosts' all
+#ansible -a 'cat /etc/hosts' all
 
-
--
-  name: Play1
-  hosts: all
-  become: true
-  tasks:
-    - command: date
-      name: Execute date command
 
 -
   name: Play2
   hosts: all
   become: true
   tasks:
-    - name: Install web service
-      yum:
-        name: httpd
-        state: present
-    - name: Start Web service
-      service:
-        name: httpd
-        state: started
+    - command: date
+      name: Execute date command
+
+# To see verbose output with date outputs
+# ansible-playbook playbook.yaml -v 
 

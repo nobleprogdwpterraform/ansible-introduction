@@ -1,16 +1,36 @@
-tasks:
-  - name: Install Prerequisite
-    debug:
-      msg: 'Installing prereqs'
-  
-  - name: Install packages
-    debug:
-      msg: 'Installing packages'
-
-  - name: Start MySql DB
-    debug:
-      msg: 'Starting MySQL DB'
-
-  - name: Configure DB
-    debug:
-      msg: 'Configured test DB'
+---
+    - name: create app code folder
+      file:
+        path: app_code
+        state: directory
+    - name: create app code
+      lineinfile:
+        path: app_code/index.html
+        line: Hello from Roles app
+        create: true
+      
+    - name: install apache2 on Debian
+      apt:
+        name: apache2
+        state: latest
+      when: ansible_os_family == 'Debian'
+    - name: start apache2 on Debian
+      service:
+        name: apache2
+        state: started
+      when: ansible_os_family == 'Debian'
+      
+    - name: install httpd on RedHat
+      yum:
+        name: httpd
+        state: latest
+      when: ansible_os_family == 'RedHat'
+    - name: start httpd on RedHat
+      service:
+        name: httpd
+        state: started
+      when: ansible_os_family == 'RedHat'
+    - name: Copy Application Code
+      copy:
+        src: app_code/
+        dest: /var/www/html

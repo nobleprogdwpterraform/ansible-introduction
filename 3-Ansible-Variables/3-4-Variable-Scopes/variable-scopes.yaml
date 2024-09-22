@@ -1,18 +1,17 @@
-
 # Host Scope Variable
 ---
 - name: Play
   host: all
   tasks:
     - debug:
-        msg: '{{ dns_server }}'
+        msg: '{{ nameserver_ip }}'
   
 
 
 # Play Scope variable
 ---
 - name: Play1
-  hosts: web1
+  hosts: target1
   vars:
     ntp_server: 10.1.1.1
   tasks:
@@ -20,7 +19,7 @@
         var: ntp_server
 
 - name: Play2
-  host: web1
+  hosts: target2
   tasks:
     - debug:
         var: ntp_server
@@ -29,7 +28,7 @@
 # ansible-playbook playbook.yaml --extra-vars ntp_server=10.5.5.7
 ---
 - name: Play1
-  hosts: web1
+  hosts: target1
   vars:
     ntp_server: 10.1.1.1
   tasks:
@@ -37,7 +36,7 @@
         var: ntp_server
 
 - name: Play2
-  host: web1
+  hosts: target2
   tasks:
     - debug:
         var: ntp_server

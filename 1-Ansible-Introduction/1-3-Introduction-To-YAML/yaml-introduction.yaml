@@ -1,1 +1,10 @@
-#Introduction to YAML
+# Yaml Intrduction
+Fruits:
+  - Banana:
+      calories: 105
+      Fat: 0.4g
+      Carbs: 27g
+  - Grape:
+      calories: 62
+      Fat: 0.3g
+      Carbs: 16g

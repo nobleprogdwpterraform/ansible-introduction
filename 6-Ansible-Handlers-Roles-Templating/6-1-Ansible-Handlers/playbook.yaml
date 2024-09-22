@@ -1,16 +1,26 @@
+#mkdir app_code
+#echo "Hello World" >>  app_code/index.html
 ---
 - name: Deploy Applications
-  hosts: applications_servers
+  hosts: localhost
   become: yes
   tasks:
+    - name: install httpd
+      apt:
+        name: apache2
+        state: latest
+    - name: start httpd
+      service:
+        name: apache2
+        state: started
     - name: Copy Application Code
       copy:
         src: app_code/
-        dest: /opt/application
+        dest: /var/www/html
       notify: Restart Application Service
 
   handlers:
     - name: Restart Application Service
       service:
-        name: application_service
+        name: apache2
         state: restarted

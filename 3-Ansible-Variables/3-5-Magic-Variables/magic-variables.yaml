@@ -3,4 +3,8 @@
   host: all
   tasks:
     - debug:
-        msg: '{{ host_vars['web2'].dns_server }}'
+        msg: "{{ host_vars['localhost'].nameserver_ip }}"
+
+#"{{ host_vars['localhost'].ansible_hostname }}"
+#"{{ host_vars['localhost'].ansible_facts.architecture }}"
+#"{{ host_vars['localhost'].inventory_hostname }}"

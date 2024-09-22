@@ -1,0 +1,7 @@
+---
+- name: 'First playbook'
+  hosts: target2
+  tasks:
+    - name: 'Ansible Hello world'
+      debug:
+        var: ansible_facts

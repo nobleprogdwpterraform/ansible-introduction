@@ -1,0 +1,10 @@
+---
+- name: 'First playbook'
+  hosts: localhost
+  tasks:
+    - name: 'Ansible Hello world'
+      debug:
+        msg: 'Hello from Ansible'
+
+# /etc/ansible/ansible.cfg
+# 

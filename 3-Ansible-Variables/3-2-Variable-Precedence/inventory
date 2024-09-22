@@ -1,16 +1,12 @@
 
-# Web Servers
-web1 ansible_host=server1.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
-web2 ansible_host=server2.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
-web3 ansible_host=server3.company.com ansible_connection=ssh ansible_user=root ansible_ssh_pass=Password123!
+localhost ansible_connection=local nameserver_ip=8.8.8.8 snmp_port=160-161 dns_server=10.1.250.5
+target1 ansible_host=target1 ansible_user=vagrant ansible_ssh_pass=vagrant
+target2 ansible_host=target2 ansible_user=vagrant ansible_ssh_pass=vagrant
 
-localhost ansible_connection=local nameserver_ip=8.8.8.8
+[web_nodes]
+localhost
+target1
+target2
 
-
-[web_servers]
-web1
-web2
-web3
-
-[web_servers:vars]
+[web_nodes:vars]
 dns_server=10.5.5.3

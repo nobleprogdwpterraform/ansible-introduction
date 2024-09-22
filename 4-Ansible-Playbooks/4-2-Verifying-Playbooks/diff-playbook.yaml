@@ -1,0 +1,12 @@
+-
+  name: Play1
+  hosts: target1
+  tasks:
+    - lineinfile:
+        path: /etc/nginx/nginx.conf
+        line: 'client_max_body_size 100M'
+      name: Ensure config line is present
+      become: yes
+
+#ap diff-playbook.yaml --diff
+#ap diff-playboo.yaml --syntax-check 

@@ -1,7 +1,9 @@
 
 localhost ansible_connection=local nameserver_ip=8.8.8.8 snmp_port=160-161
-target1 ansible_host=target1 ansible_ssh_pass=vagrant
+target1 ansible_host=target1 ansible_user=vagrant ansible_ssh_pass=vagrant
+target2 ansible_host=target2 ansible_user=vagrant ansible_ssh_pass=vagrant
 
 [web_nodes]
 localhost
 target1
+target2

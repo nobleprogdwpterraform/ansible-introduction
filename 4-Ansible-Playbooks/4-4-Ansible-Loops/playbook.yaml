@@ -12,18 +12,3 @@
      - command: 'echo "{{ item }}"'
        with_items: '{{ fruits }}'
 
-#Lab: nstall all packages defined under packages variable.
----
-- name: 'Install required packages'
-  hosts: localhost
-  become: yes
-  vars:
-    packages:
-      - httpd
-      - make
-      - vim
-  tasks:
-    - yum:
-        name: '{{ item }}'
-        state: present
-      with_items: '{{ packages }}'
