@@ -41,6 +41,8 @@ https://code.visualstudio.com/download
 4. Test logging in.
 
     1. Add target1 and target2 entries in hosts
+         ssh-keygen -f "/home/student/.ssh/known_hosts" -R "target1"
+        ssh-keygen -f "/home/student/.ssh/known_hosts" -R "target2"
 
         ```
         sudo vi /etc/hosts
