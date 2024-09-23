@@ -22,6 +22,7 @@ https://code.visualstudio.com/download
     ```bash
     cd vagrant
     vagrant up
+    If you see any error stating machine with target1 already exists then remove the virtual machine named target1 and target2 by opening oracle virtualbox on your system.
     ```
 
     When the process completes successfully, it will display the names of the VMs and their IP addresses on the virtual network
@@ -40,9 +41,7 @@ https://code.visualstudio.com/download
 
 4. Test logging in.
 
-    1. Add target1 and target2 entries in hosts
-         ssh-keygen -f "/home/student/.ssh/known_hosts" -R "target1"
-        ssh-keygen -f "/home/student/.ssh/known_hosts" -R "target2"
+    1. Add target1 and target2 entries in hosts (please check if its already not added)
 
         ```
         sudo vi /etc/hosts
@@ -54,7 +53,8 @@ https://code.visualstudio.com/download
         This login is password-less so you should get directly to the CentOS prompt.
 
     1. Test the controller can connect to the target machine
-
+        ssh-keygen -f "/home/student/.ssh/known_hosts" -R "target1"
+        ssh-keygen -f "/home/student/.ssh/known_hosts" -R "target2"
         ```
         ssh vagrant@target1
         enter password vagrant
